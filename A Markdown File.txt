@@ -1,0 +1,118 @@
+### `set-primary-ens-domain.md`
+
+---
+
+# Set Primary ENS Domain
+
+Set Primary ENS Domain is a feature of the ENS domains GitHub repository that allows users to specify their primary ENS domain amongst multiple owned domains. This documentation provides detailed information on its utilization, and illustrates how to build a RESTful API to automate this process.
+
+
+```javascript
+// Imports
+import mongoose, {Schema } from 'mongoose'
+
+// Collection name
+export const collection = 'Product';
+```
+### The Standard Lorem Ipsum
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut gravida eleifend quam. Sed a nisl vitae mauris egestas finibus. vestibulum leo.
+
+| Label 1     | Label 2     | Label 3       |
+| ----------- | ----------- |  -----------  |
+| Table details 1.1  |  Table details 1.2  |  Table details 1.3  |
+| Table details 2.1  |  Table details 2.2  |  Table details 2.3  |
+| Table details 3.1  |  Table details 3.2  |  Table details 3.3  |
+
+## Table of Contents
+
+- [How to Use Set Primary ENS Domain](#how-to-use)
+- [Building a RESTful API](#build-api)
+- [API Relationships](#api-relationships)
+- [Additional Resources](#resources)
+
+### How to Use Set Primary ENS Domain <a name="how-to-use"></a>
+
+Follow the steps below to manually set your primary ENS domain:
+
+1. **Login to Your ENS Account**
+    - Visit [ENS Domains](https://ens.domains) and login to your account.
+
+2. **Navigate to Your Domains**
+    - Go to your dashboard and view the list of your owned domains.
+
+3. **Select Primary Domain**
+    - Choose the domain you want to make primary and click on the "Make Primary" option.
+
+#### Code Snippet
+
+```javascript
+// Sample code to interact with the ENS contract to set primary domain
+const ens = new ENS(web3.currentProvider);
+const primaryDomain = "example.eth";
+
+ens.setPrimaryDomain(primaryDomain)
+.then(response => console.log(response))
+.catch(error => console.error(error));
+```
+
+### Building a RESTful API to Automate the Process <a name="build-api"></a>
+
+We’ll create an API using Node.js and Express that interfaces with ENS to allow users to set their primary domain programmatically.
+
+1. **Set Up Your Project**
+    - Initialize a new Node.js project and install the required dependencies.
+
+2. **Create an Endpoint**
+    - Develop a POST endpoint `/setPrimaryDomain`.
+
+3. **Interact with ENS**
+    - Utilize ENS’s smart contracts to change the primary domain.
+
+#### Code Snippet
+
+```javascript
+const express = require('express');
+const ENS = require('ethereum-ens');
+
+const app = express();
+const ens = new ENS(web3.currentProvider);
+
+app.post('/setPrimaryDomain', (req, res) => {
+const { domain } = req.body;
+
+ens.setPrimaryDomain(domain)
+.then(response => res.send(response))
+.catch(error => res.status(500).send(error));
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server is running on http://localhost:${PORT}`));
+```
+
+### API Relationships with ENS Domains Features <a name="api-relationships"></a>
+
+The API integrates directly with the ENS Domains and its features, facilitating automated and efficient domain management.
+
+**Graph:**
+
+```
+ENS Domains Features
+|
++---> Set Primary ENS Domain
+|
++---> RESTful API
+```
+
+### Additional Resources <a name="resources"></a>
+
+- ENS Domains GitHub Repository: [ENS GitHub](https://github.com/ensdomains/ens)
+- ENS Domains Official Website: [ENS Domains](https://ens.domains)
+- API Development: [Express.js](https://expressjs.com)
+
+---
+
+For further assistance or inquiries, feel free to reach out through the [ENS domains GitHub issues page](https://github.com/ensdomains/ens/issues).
+
+**Note:** Ensure to have the necessary permissions and adhere to the terms and conditions stipulated by ENS Domains before interacting with or modifying your ENS domains programmatically.
+
+---
